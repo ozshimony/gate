@@ -30,7 +30,7 @@
       document.getElementById("title").className = "ok";
       document.getElementById("message").innerHTML = "You may now enter.";
 
-      let seconds = 5;
+      let seconds = 10;
       const counter = document.getElementById("count");
       counter.innerHTML = "Closing in " + seconds + " seconds...";
 
@@ -38,7 +38,7 @@
         seconds--;
         counter.innerHTML = "Closing in " + seconds + " seconds...";
         if (seconds <= 0) { clearInterval(interval); window.close(); }
-      }, 500);
+      }, 1000);
     })
     .catch(() => {
       document.getElementById("title").innerHTML = "⚠️ Connection Error";
