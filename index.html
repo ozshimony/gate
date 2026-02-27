@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Open Gate</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      background: #f4f6f8;
+      margin: 0;
+      padding-top: 100px;
+    }
+    .card {
+      background: white;
+      padding: 40px;
+      border-radius: 16px;
+      box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+      display: inline-block;
+    }
+    h1 {
+      margin: 0 0 15px;
+      font-size: 26px;
+    }
+    .loading { color: #666; }
+    .success { color: green; }
+  </style>
+</head>
+<body>
+
+<div class="card">
+  <h1 id="title">Opening Gate...</h1>
+  <p id="message" class="loading">Please wait</p>
+</div>
+
+<script>
+  const webhookUrl = "https://acfllxtalxspgmbv1jmy94uklwfkbpmz.ui.nabu.casa/api/webhook/open_gate_morning_87321";
+
+  fetch(webhookUrl, {
+    method: "POST",
+    mode: "no-cors"
+  }).then(() => {
+    document.getElementById("title").innerHTML = "✅ Gate Opened";
+    document.getElementById("title").className = "success";
+    document.getElementById("message").innerHTML = "You may now enter.";
+  }).catch(() => {
+    document.getElementById("title").innerHTML = "⚠️ Connection Error";
+    document.getElementById("message").innerHTML = "Please try again.";
+  });
+</script>
+
+</body>
+</html>
