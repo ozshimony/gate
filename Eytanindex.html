@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Open Gate</title>
+  <style>
+    body{font-family:Arial,sans-serif;text-align:center;background:#f4f6f8;margin:0;padding-top:90px;}
+    .card{background:#fff;padding:36px 34px;border-radius:16px;box-shadow:0 8px 25px rgba(0,0,0,.1);display:inline-block;min-width:280px;}
+    h1{margin:0 0 12px;font-size:26px;}
+    .sub{color:#666;margin:0;font-size:15px;}
+    .ok{color:green;}
+    .count{margin-top:18px;font-size:14px;color:#444;}
+  </style>
+</head>
+<body>
+<div class="card">
+  <h1 id="title">Opening Gate...</h1>
+  <p id="message" class="sub">Please wait</p>
+  <div class="count" id="count"></div>
+</div>
+
+<script>
+  // Eytan:
+  const webhookUrl = "https://acfllxtalxspgmbv1jmy94uklwfkbpmz.ui.nabu.casa/api/webhook/open_gate_eytan_7f3c9a2d4b8e6c1a9d2f7b4c6e8a1d3f";
+
+  fetch(webhookUrl, { method: "POST", mode: "no-cors" })
+    .then(() => {
+      document.getElementById("title").innerHTML = "✅ Gate Opened";
+      document.getElementById("title").className = "ok";
+      document.getElementById("message").innerHTML = "You may now enter.";
+
+      let seconds = 10;
+      const counter = document.getElementById("count");
+      counter.innerHTML = "Closing in " + seconds + " seconds...";
+
+      const interval = setInterval(() => {
+        seconds--;
+        counter.innerHTML = "Closing in " + seconds + " seconds...";
+        if (seconds <= 0) { clearInterval(interval); window.close(); }
+      }, 1000);
+    })
+    .catch(() => {
+      document.getElementById("title").innerHTML = "⚠️ Connection Error";
+      document.getElementById("message").innerHTML = "Please try again.";
+    });
+</script>
+</body>
+</html>
